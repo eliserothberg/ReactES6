@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breakdowns</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel='stylesheet' href='style.css' /> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="../app.js" type="text/javascript"></script>
+    <script src="../prjects.json" type="text/json"></script>
+
+
+</head>
+<body>
+
+<div class="container">
+<table class="table table-bordered table-striped table-hover">
+<tr>
+<th>Title</th>
+<th>Type</th>
+<th>Start Date</th>
+<th>Casting Director</th>
+</tr>
+
+  <div class="row">
+
+    <div class="col-lg-12">
+
+    <h1 style="font-size: 40px">Breakdown List</h1>
+    <div id="showProjects">  
+     <div class="btn-group" data-toggle="buttons">              
+            <label class="radio-inline">
+              <input type="radio" name="interested" id="interested" value="0">
+            I'm interested</label>
+            <label class="radio-inline">
+              <input type="radio" name="notInterested" id="notInterested" value="1">I'm not interested</label>
+           
+          </div>
+        </div>
+</div>
+<script type="text/javascript">
+$.getJSON("projects.json", function(projects) {
+  var items = [];
+  $.each(projects, function(key, value) {
+    items.push("<tr>");
+    items.push("<td title=''"+key+"''>"+value.title+"</td>");
+    items.push("<td title=''"+key+"''>"+value.type+"</td>");
+    items.push("<td title=''"+key+"''>"+value.startDate+"</td>");
+    items.push("<td title=''"+key+"''>"+value.castingDirector+"</td>");
+    items.push("</tr>");
+  });
+  $("<tbody/>" , {html: items.join("")}).appendto("table");
+});
+</script>
+
+</body>
+</html>
